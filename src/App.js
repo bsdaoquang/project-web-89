@@ -1,10 +1,11 @@
 /** @format */
 
-import logo from './logo.svg';
 import './App.css';
+import HomeScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 function App() {
-	return <div className='App'>Hello World!!!</div>;
+	return <HomeScreen />;
 }
 
 export default App;
