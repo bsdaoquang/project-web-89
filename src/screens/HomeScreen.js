@@ -15,8 +15,7 @@ const HomeScreen = () => {
 				<p>Profile screen</p>
 			</CardComponent>
 
-			<CardComponent color='coral'>
-				<p>Home Screen</p>
+			<CardComponent>
 				{users.map((user) => (
 					<UserComponent
 						key={user.id}
