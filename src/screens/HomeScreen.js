@@ -2,18 +2,22 @@
 
 import { Button, Card, Form, Input } from 'antd';
 import React, { useState } from 'react';
+import UserComponent from '../components/UserComponent';
 
-const HomeScreen = () => {
+const HomeScreen = ({ user, handlePushProfile }) => {
 	const [form] = Form.useForm();
 
 	const handleLogin = (vals) => {
-		console.log(vals);
+		handlePushProfile(vals);
+		form.resetFields();
 	};
 
 	return (
 		<div className='container mt-4'>
+			<UserComponent user={user} />
+
 			<div className='row'>
-				<div className='col-6 offset-3'>
+				<div className='col'>
 					<Card>
 						<Form form={form} layout='vertical' onFinish={handleLogin}>
 							<Form.Item name={'email'} label='Email'>
@@ -25,7 +29,7 @@ const HomeScreen = () => {
 						</Form>
 
 						<div className='text-right mt-2'>
-							<Button onClick={() => form.submit()}>Login</Button>
+							<Button onClick={() => form.submit()}>Agree</Button>
 						</div>
 					</Card>
 				</div>
