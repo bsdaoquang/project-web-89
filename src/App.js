@@ -1,39 +1,58 @@
 /** @format */
 
-import { Home } from 'iconsax-react';
+import { Avatar, Button, List, Space, Table } from 'antd';
 import './App.css';
-import HomeScreen from './screens/HomeScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import { useState } from 'react';
-import AddTask from './components/AddTask';
-import TasksComponent from './components/TasksComponent';
-import ScoreComponent from './components/ScoreComponent';
-import ButtonComponent from './components/ButtonComponent';
-import { users } from './data/users';
+import { posts } from './data/posts';
 import ListUserItem from './components/ListUserItem';
+import { Edit, Trash } from 'iconsax-react';
 
 function App() {
-	const usersWithCompany = users.filter((element) => element.company);
+	const columns = [
+		{ key: '', dataIndex: '', title: 'Index' },
+		{
+			key: 'title',
+			dataIndex: 'title',
+			title: 'Title',
+		},
+		{
+			key: 'Button',
+			dataIndex: '',
+			render: (item) => (
+				<Button
+					icon={<Trash color='coral' size={22} variant='Bold' />}
+					type='text'
+				/>
+			),
+		},
+	];
 
-	const handleCheckEmail = (id) => {
-		const user = users.find((element) => element.id === id); // '1' !== 1
-
-		user && alert(user.email);
-	};
 	return (
 		<div className='container mt-4'>
 			<div className='row'>
 				<div className='col-8 offset-2'>
-					<ul>
-						{usersWithCompany.map((item, index) => (
-							<ListUserItem
-								onCheckEmail={() => handleCheckEmail(item.id)}
-								size={18}
-								color={index % 2 ? 'coral' : 'green'}
-								user={item}
-							/>
-						))}
-					</ul>
+					<Table dataSource={posts} columns={columns} />
+					{/* <List
+						pagination
+						dataSource={posts}
+						renderItem={(item, _index) => (
+							<List.Item
+								key={item.id}
+								extra={
+									<Space>
+										<Button
+											type='text'
+											icon={<Edit size={18} color='coral' />}
+										/>
+									</Space>
+								}>
+								<List.Item.Meta
+									avatar={<Avatar size={40}>{item.userId}</Avatar>}
+									title={item.title}
+									description={item.body}
+								/>
+							</List.Item>
+						)}
+					/> */}
 				</div>
 			</div>
 		</div>
