@@ -156,11 +156,6 @@ export const users = [
 		},
 		phone: '210.067.6132',
 		website: 'elvis.io',
-		company: {
-			name: 'Johns Group',
-			catchPhrase: 'Configurable multimedia task-force',
-			bs: 'generate enterprise e-tailers',
-		},
 	},
 	{
 		id: 8,
@@ -202,11 +197,6 @@ export const users = [
 		},
 		phone: '(775)976-6794 x41206',
 		website: 'conrad.com',
-		company: {
-			name: 'Yost and Sons',
-			catchPhrase: 'Switchable contextually-based project',
-			bs: 'aggregate real-time technologies',
-		},
 	},
 	{
 		id: 10,
@@ -225,10 +215,5 @@ export const users = [
 		},
 		phone: '024-648-3804',
 		website: 'ambrose.net',
-		company: {
-			name: 'Hoeger LLC',
-			catchPhrase: 'Centralized empowering task-force',
-			bs: 'target end-to-end models',
-		},
 	},
 ];
