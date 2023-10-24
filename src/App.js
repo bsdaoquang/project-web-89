@@ -13,21 +13,7 @@ function App() {
 		address: 'HCM city',
 	};
 
-	return (
-		<div className='container-fluid'>
-			<div className='row'>
-				<div className='col bg-success'>
-					<HomeScreen
-						user={user}
-						handlePushProfile={(val) => setProfiles([...profiles, val])}
-					/>
-				</div>
-				<div className='col bg-primary'>
-					<ProfileScreen profiles={profiles} />
-				</div>
-			</div>
-		</div>
-	);
+	return <div className='container-fluid'></div>;
 }
 
 export default App;
