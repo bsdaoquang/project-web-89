@@ -13,16 +13,19 @@ const UserComponent = (props) => {
 		getUserById();
 	}, [id]);
 
-	useEffect(() => {
-		getTotalPostByUser();
-	}, [user]);
+	const getUserById = async () => {
+		const api = `https://jsonplaceholder.typicode.com/users/${id}`;
 
-	const getTotalPostByUser = () => {};
-
-	const getUserById = () => {
-		const item = users.find((element) => element.id === id);
-
-		item && setUser(item);
+		await fetch(api, {
+			method: 'get',
+		})
+			.then((result) => result.json())
+			.then((res) => {
+				setUser(res);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return <>{user && <p>{user.name}</p>}</>;

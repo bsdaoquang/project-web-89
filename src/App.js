@@ -1,22 +1,47 @@
 /** @format */
 
-import { Avatar, Button, FloatButton, List, Space } from 'antd';
-import { Edit } from 'iconsax-react';
+import { Button, FloatButton, List, Space } from 'antd';
+import { Edit, Trash } from 'iconsax-react';
 import { useEffect, useState } from 'react';
 import './App.css';
-import { posts } from './data/posts';
 import UserComponent from './components/UserComponent';
 
 function App() {
 	const [data, setData] = useState([]);
-	const [height, setHeight] = useState(0);
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		getPosts();
 	}, []);
 
-	const getPosts = () => {
-		setData(posts);
+	useEffect(() => {
+		data.length < 90 && getPosts();
+	}, [data.length]);
+
+	const getPosts = async () => {
+		const api = `https://jsonplaceholder.typicode.com/posts/`;
+		setIsLoading(true);
+		await fetch(api, {
+			method: 'get',
+		})
+			.then((result) => result.json())
+			.then((res) => {
+				setData(res);
+				setIsLoading(false);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	const handleRemovePostById = (id) => {
+		const index = data.findIndex((element) => element.id === id);
+
+		if (index) {
+			data.splice(index, 1);
+			const items = [...data];
+			setData(items);
+		}
 	};
 
 	return (
@@ -24,17 +49,19 @@ function App() {
 			<div className='container mt-4'>
 				<div className='row'>
 					<div className='col-8 offset-2'>
+						<h1>Total Posts {data.length}</h1>
 						<List
 							dataSource={data}
+							loading={isLoading}
 							renderItem={(item, _index) => (
 								<List.Item
 									key={item.id}
 									extra={
 										<Space>
 											<Button
-												onClick={() => console.log(item)}
+												onClick={() => handleRemovePostById(item.id)}
 												type='text'
-												icon={<Edit size={18} color='coral' />}
+												icon={<Trash size={18} color='coral' />}
 											/>
 										</Space>
 									}>
