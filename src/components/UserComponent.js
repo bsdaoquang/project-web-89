@@ -1,17 +1,31 @@
 /** @format */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import TextComponent from './TextComponent';
+import { users } from '../data/users';
+import { useState } from 'react';
 
 const UserComponent = (props) => {
-	const { name, email, company, user } = props;
+	const { id } = props;
+	const [user, setUser] = useState();
 
-	return (
-		<div>
-			<h5>{user.name}</h5>
-			<p>{user.address}</p>
-		</div>
-	);
+	useEffect(() => {
+		getUserById();
+	}, [id]);
+
+	useEffect(() => {
+		getTotalPostByUser();
+	}, [user]);
+
+	const getTotalPostByUser = () => {};
+
+	const getUserById = () => {
+		const item = users.find((element) => element.id === id);
+
+		item && setUser(item);
+	};
+
+	return <>{user && <p>{user.name}</p>}</>;
 };
 
 export default UserComponent;

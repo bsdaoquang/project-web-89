@@ -1,58 +1,48 @@
 /** @format */
 
-import { Avatar, Button, List, Space, Table } from 'antd';
+import { Avatar, Button, List, Space } from 'antd';
+import { Edit } from 'iconsax-react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { posts } from './data/posts';
-import ListUserItem from './components/ListUserItem';
-import { Edit, Trash } from 'iconsax-react';
+import UserComponent from './components/UserComponent';
 
 function App() {
-	const columns = [
-		{ key: '', dataIndex: '', title: 'Index' },
-		{
-			key: 'title',
-			dataIndex: 'title',
-			title: 'Title',
-		},
-		{
-			key: 'Button',
-			dataIndex: '',
-			render: (item) => (
-				<Button
-					icon={<Trash color='coral' size={22} variant='Bold' />}
-					type='text'
-				/>
-			),
-		},
-	];
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		getPosts();
+	}, []);
+
+	const getPosts = () => {
+		setData(posts);
+	};
 
 	return (
 		<div className='container mt-4'>
 			<div className='row'>
 				<div className='col-8 offset-2'>
-					<Table dataSource={posts} columns={columns} />
-					{/* <List
-						pagination
-						dataSource={posts}
+					<List
+						dataSource={data}
 						renderItem={(item, _index) => (
 							<List.Item
 								key={item.id}
 								extra={
 									<Space>
 										<Button
+											onClick={() => console.log(item)}
 											type='text'
 											icon={<Edit size={18} color='coral' />}
 										/>
 									</Space>
 								}>
 								<List.Item.Meta
-									avatar={<Avatar size={40}>{item.userId}</Avatar>}
 									title={item.title}
-									description={item.body}
+									description={<UserComponent id={item.userId} />}
 								/>
 							</List.Item>
 						)}
-					/> */}
+					/>
 				</div>
 			</div>
 		</div>
