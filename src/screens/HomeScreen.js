@@ -1,40 +1,17 @@
 /** @format */
 
-import { Button, Card, Form, Input } from 'antd';
-import React, { useState } from 'react';
-import UserComponent from '../components/UserComponent';
+import React, { useContext } from 'react';
+import { ContainerComponent } from '../components/ContainerComponent';
+import TextComponent from '../components/TextComponent';
+import ThemeContext from '../contexts/themeContext';
 
-const HomeScreen = ({ user, handlePushProfile }) => {
-	const [form] = Form.useForm();
-
-	const handleLogin = (vals) => {
-		handlePushProfile(vals);
-		form.resetFields();
-	};
+const HomeScreen = () => {
+	const langCtx = useContext(ThemeContext).theme;
 
 	return (
-		<div className='container mt-4'>
-			<UserComponent user={user} />
-
-			<div className='row'>
-				<div className='col'>
-					<Card>
-						<Form form={form} layout='vertical' onFinish={handleLogin}>
-							<Form.Item name={'email'} label='Email'>
-								<Input placeholder='Email' />
-							</Form.Item>
-							<Form.Item name={'password'} label='password'>
-								<Input placeholder='Password' />
-							</Form.Item>
-						</Form>
-
-						<div className='text-right mt-2'>
-							<Button onClick={() => form.submit()}>Agree</Button>
-						</div>
-					</Card>
-				</div>
-			</div>
-		</div>
+		<ContainerComponent>
+			<TextComponent text={langCtx.lang === 'vi' ? 'Xin chao' : 'Hello'} />
+		</ContainerComponent>
 	);
 };
 
