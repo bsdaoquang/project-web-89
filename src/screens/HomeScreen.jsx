@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import ThemeContext from '../contexts/themeContext';
 import { Link, useNavigate } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent';
-import { Card, Input, List } from 'antd';
+import { Button, Card, Input, List } from 'antd';
 import { posts } from '../data/posts';
 import { SearchNormal1 } from 'iconsax-react';
 
@@ -15,23 +15,51 @@ const HomeScreen = () => {
 
 	const navigate = useNavigate();
 
-	// const handleSearchPostByKey = () => {
-	// 	if (searchKey) {
-	// 		const items = posts.filter((element) =>
-	// 			element.title.includes(searchKey)
-	// 		);
+	const bills = [
+		{
+			date: 'b',
+			total: 18,
+		},
+		{
+			date: 'd',
+			total: 36,
+		},
+		{
+			date: 'f',
+			total: 258,
+		},
+		{
+			date: 'faf',
+			total: 28927,
+		},
+		{
+			date: 'klfas',
+			total: 25363,
+		},
+		{
+			date: 'hasgjhs',
+			total: 6373738,
+		},
+		{
+			date: 'a',
+			total: 36268389,
+		},
+	];
 
-	// 		items.length > 0 && setResults(items);
-	// 	} else {
-	// 		setResults([]);
-	// 	}
-	// };
+	const handleDemoJavascript = () => {
+		// //number
+		// bills.sort((a, b) => a.total - b.total);
+		// // alphabe
+		// bills.sort((a, b) => a.date.localeCompare(b.date));
+		// console.log(bills);
+	};
 
 	return (
 		<>
 			<h1>Home screen</h1>
+			<Button onClick={handleDemoJavascript}>Test</Button>
 
-			<div className='col col-8 offset-2'>
+			{/* <div className='col col-8 offset-2'>
 				<Input
 					allowClear
 					value={searchKey}
@@ -40,9 +68,9 @@ const HomeScreen = () => {
 					onPressEnter={() => navigate(`/search?q=${searchKey}`)}
 					prefix={<SearchNormal1 size={18} color='#676767' />}
 					placeholder='Search'
-				/>
+				/> */}
 
-				{/* <Card
+			{/* <Card
 					extra={
 						<Input
 							allowClear
@@ -61,7 +89,6 @@ const HomeScreen = () => {
 						)}
 					/>
 				</Card> */}
-			</div>
 		</>
 	);
 };
