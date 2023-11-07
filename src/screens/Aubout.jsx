@@ -1,15 +1,13 @@
 /** @format */
 
 import React from 'react';
-import TextComponent from '../components/TextComponent';
-import { ContainerComponent } from '../components/ContainerComponent';
+import HeaderComponent from '../components/HeaderComponent';
 
 const Aubout = () => {
 	return (
-		<ContainerComponent>
-			<TextComponent text='fsajfhsjak' />
-			<TextComponent text='fsajfhsjak' />
-		</ContainerComponent>
+		<>
+			<h1>About</h1>
+		</>
 	);
 };
 

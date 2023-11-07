@@ -4,12 +4,10 @@ import { Space, Switch } from 'antd';
 import React, { useContext, useState } from 'react';
 import ThemeContext from '../contexts/themeContext';
 import LangContext from '../contexts/langContext';
+import { Link } from 'react-router-dom';
 
 const HeaderComponent = () => {
 	const themeCtx = useContext(ThemeContext);
-	// const langCtx = useContext(LangContext);
-
-	// console.log(langCtx);
 
 	return (
 		<div className='container-fluid bg-dark'>
@@ -34,6 +32,8 @@ const HeaderComponent = () => {
 								})
 							}
 						/>
+
+						<Link to={'/login'}>Login</Link>
 					</Space>
 				</div>
 			</div>
