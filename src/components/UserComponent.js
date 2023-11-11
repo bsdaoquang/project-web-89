@@ -4,6 +4,9 @@ import React, { useEffect } from 'react';
 import TextComponent from './TextComponent';
 import { users } from '../data/users';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { constants } from '../constants';
+import { axiosClient } from '../axiosClient';
 
 const UserComponent = (props) => {
 	const { id } = props;
@@ -14,21 +17,23 @@ const UserComponent = (props) => {
 	}, [id]);
 
 	const getUserById = async () => {
-		const api = `https://jsonplaceholder.typicode.com/users/${id}`;
+		const api = `/users/${id}`;
+		const res = await axiosClient(api);
 
-		await fetch(api, {
-			method: 'get',
-		})
-			.then((result) => result.json())
-			.then((res) => {
-				setUser(res);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		if (res) {
+			setUser(res);
+		}
 	};
 
-	return <>{user && <p>{user.name}</p>}</>;
+	return (
+		<>
+			{user && (
+				<Link to={`../profile?uid=${id}`} style={{ margin: 0 }}>
+					{user.name}
+				</Link>
+			)}
+		</>
+	);
 };
 
 export default UserComponent;

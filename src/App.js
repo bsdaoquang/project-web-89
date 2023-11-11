@@ -11,6 +11,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import HeaderComponent from './components/HeaderComponent';
 import LoginScreen from './screens/LoginScreen';
 import SearchScreen from './screens/SearchScreen';
+import PostDetail from './screens/PostDetail';
 
 function App() {
 	const [theme, setTheme] = useState({ theme: 'light', lang: 'vi' });
@@ -26,6 +27,7 @@ function App() {
 						<Route path='/profile' element={<ProfileScreen />} />
 						<Route path='/login' element={<LoginScreen />} />
 						<Route path='/search' element={<SearchScreen />} />
+						<Route path='/post-detail' element={<PostDetail />} />
 					</Routes>
 				</ThemeContext.Provider>
 			</BrowserRouter>
